@@ -14,9 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework import routers
+from accel_api.accel_views import accel_views
+
+router = routers.DefaultRouter()
+
+
+router.register(
+    r"accel_course_type", accel_views.AccelCourseTypeView, "accel_course_type"
+)
+router.register(
+    r"accel_progress_status",
+    accel_views.AccelProgressStatusView,
+    "accel_progress_status",
+)
+router.register(r"accel_course", accel_views.AccelCourseView, "accel_course")
+router.register(r"accel_category", accel_views.AccelCategoryView, "accel_category")
+router.register(r"accel_role", accel_views.AccelRoleView, "accel_role")
+router.register(r"accel_user", accel_views.AccelUserView, "accel_user")
+router.register(
+    r"accel_user_progress", accel_views.AccelUserProgressView, "accel_user_progress"
+)
+
+
+urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
