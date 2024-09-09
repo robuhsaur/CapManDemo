@@ -16,9 +16,9 @@ This project includes a React frontend and a Django backend, connected through D
 - API integration between the frontend (React) and backend (Django with DRF).
 - Implementation of data query optimization for efficient data fetching.
 
-## Setup Instructions
+### Setup Instructions
 
-### Backend Setup 
+## Backend Setup 
 
 1. Clone the repository:
 
@@ -49,7 +49,7 @@ This project includes a React frontend and a Django backend, connected through D
    ```python manage.py runserver```
 
 
-### Backend Setup 
+## Frontend Setup 
 
 1. Navigate to the front-end
 
