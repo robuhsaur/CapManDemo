@@ -40,4 +40,4 @@ router.register(
 )
 
 
-urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls))]
+urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls)), path("accel_login/", accel_views.ldap_login, name="ldap_login"), path("accel_logout/", accel_views.logout_view, name="ldap_logout")]

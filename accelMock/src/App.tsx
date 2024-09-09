@@ -10,6 +10,14 @@ import AccelSkills, {
 	loader as accelSkillsLoader,
 } from "./routes/accel_skills";
 import AccelRole, { loader as accelRoleLoader } from "./routes/accel_role";
+import AccelUserAdmin, {
+	loader as accelAdminDashboardLoader,
+} from "./routes/accel_admin_dashboard";
+import AccelUserProfile, {
+	loader as accelUserProfileLoader,
+} from "./routes/accel_user_admin_profile";
+import AccelUser, { loader as accelUserLoader } from "./routes/accel_user";
+import AccelLogin from "./accel_login";
 
 const router = createBrowserRouter([
 	{
@@ -36,7 +44,26 @@ const router = createBrowserRouter([
 				element: <AccelRole />,
 				loader: accelRoleLoader,
 			},
+			{
+				path: "accel_admin_dashboard",
+				element: <AccelUserAdmin />,
+				loader: accelAdminDashboardLoader,
+			},
+			{
+				path: "accel_user_profile/:userId",
+				element: <AccelUserProfile />,
+				loader: accelUserProfileLoader,
+			},
+			{
+				path: "accel_user/:userId",
+				element: <AccelUser />,
+				loader: accelUserLoader,
+			},
 		],
+	},
+	{
+		path: "login",
+		element: <AccelLogin />,
 	},
 ]);
 

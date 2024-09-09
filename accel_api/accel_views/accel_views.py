@@ -154,14 +154,16 @@ class AccelUserProgressView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_200_OK)
 
 
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
 def get_csrf_token(request):
     return JsonResponse({"detail": "CSRF cookie set"})
 
 
-@ensure_csrf_cookie
+# @ensure_csrf_cookie
 def ldap_login(request):
     if request.method == "POST":
+        """
+        ~~~~~~~~~~LDAP LOGIC~~~~~~~~~~~~~ #
         data = json.loads(request.body)
         email = data["email"]
         password = data["password"]
@@ -184,8 +186,13 @@ def ldap_login(request):
             return JsonResponse({"message": "Incorrect email or password"}, status=401)
         else:
             print("server bind!")
+        """
+
+        # DEMO
         try:
-            accel_user = Accel_User.objects.get(email=username)
+            data = json.loads(request.body)
+            email = data["email"]
+            accel_user = Accel_User.objects.get(email=email)
             # generate tokens
             access_token = "mock generate access token"
             refresh_token = "mock generate refresh token"
@@ -198,8 +205,8 @@ def ldap_login(request):
                 "message": "Login successful",
                 "user": serializer.data,
                 "courses_progress": progress_serializer.data,
-                "access": str(access_token),
-                "refresh": str(refresh_token),
+                "access": access_token,
+                "refresh": refresh_token,
             }
             return JsonResponse(response_data, status=status.HTTP_200_OK)
         except Accel_User.DoesNotExist:
@@ -208,7 +215,7 @@ def ldap_login(request):
     return JsonResponse({"message": "Method not allowed"}, status=405)
 
 
-@csrf_exempt
+# @csrf_exempt
 def logout_view(request):
     response = JsonResponse({"message": "Logged out successfully"})
     response.delete_cookie("refresh")

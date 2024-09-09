@@ -59,24 +59,22 @@ const AccelLogin: React.FC = () => {
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		async function fetchCsrfToken() {
-			try {
-				const response = await fetch("http://localhost:8000/csrf-token/", {
-					credentials: "include",
-				});
-				if (!response.ok) {
-					throw new Error("Failed to fetch CSRF token");
-				}
-				const token = Cookies.get("csrftoken") || "";
-				setCsrfToken(token);
-				console.log("CSRF token fetched and set:", token);
-			} catch (error) {
-				console.error("Error fetching CSRF token", error);
-			}
-		}
-		fetchCsrfToken();
-	}, []);
+	// useEffect(() => {
+	// 	async function fetchCsrfToken() {
+	// 		try {
+	// 			const response = await fetch("http://localhost:8000/csrf-token/");
+	// 			if (!response.ok) {
+	// 				throw new Error("Failed to fetch CSRF token");
+	// 			}
+	// 			const token = Cookies.get("csrftoken") || "";
+	// 			setCsrfToken(token);
+	// 			console.log("CSRF token fetched and set:", token);
+	// 		} catch (error) {
+	// 			console.error("Error fetching CSRF token", error);
+	// 		}
+	// 	}
+	// 	fetchCsrfToken();
+	// }, []);
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -85,11 +83,11 @@ const AccelLogin: React.FC = () => {
 		try {
 			const response = await fetch("http://localhost:8000/accel_login/", {
 				method: "post",
-				headers: {
-					"Content-type": "application/json",
-					"X-CSRFToken": csrfToken,
-				},
-				credentials: "include",
+				// headers: {
+				// 	"Content-type": "application/json",
+				// 	"X-CSRFToken": csrfToken,
+				// },
+				// credentials: "include",
 				body: JSON.stringify({ email: email, password: password }),
 			});
 			// Handle successful login
@@ -125,7 +123,7 @@ const AccelLogin: React.FC = () => {
 				if (role === "STUDENT") {
 					navigate("/mycourses");
 				} else {
-					navigate("/accel_user_admin");
+					navigate("/accel_admin_dashboard");
 				}
 			} else {
 				setErrorMessage(data.message);

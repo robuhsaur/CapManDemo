@@ -83,6 +83,7 @@ class Accel_User(models.Model):
         related_name="accel_user_accel_user_progress",
         blank=True,
     )
+    role = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return self.last_name + ", " + self.first_name

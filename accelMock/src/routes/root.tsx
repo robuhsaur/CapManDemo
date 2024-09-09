@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Chip from "@mui/material/Chip";
 import { useUser } from "../UserContext";
+import LogoutButton from "../accel_logout";
 
 export default function Root() {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -86,7 +87,7 @@ export default function Root() {
 							<MenuItem
 								onClick={handleMenuClose}
 								component={NavLink}
-								to="/accel_user_admin"
+								to="/accel_admin_dashboard"
 								sx={{
 									"&.active": { background: "grey" },
 									"&:hover": {
@@ -142,7 +143,7 @@ export default function Root() {
 							{/* </Menu> */}
 						</>
 					)}
-					{"STUDENT" === "STUDENT" && (
+					{userRole === "STUDENT" && (
 						<>
 							<IconButton
 								onClick={handleSecondButtonClick}
@@ -215,6 +216,7 @@ export default function Root() {
 							</>
 						)}
 					</Box>
+					<LogoutButton />
 				</Toolbar>
 			</AppBar>
 			<Toolbar />

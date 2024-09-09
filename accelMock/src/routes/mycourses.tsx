@@ -384,14 +384,17 @@ const MyCourses: React.FC = (params: any) => {
 			headerName: "Rating",
 			field: "rating",
 			editable: false,
-			cellRenderer: (params: any) => (
-				<RatingCellRenderer
-					value={params.value}
-					rowIndex={params.rowIndex}
-					params={params}
-					readOnly
-				/>
-			),
+			cellRenderer: (params: any) => {
+				const parsedValue = parseFloat(params.value);
+				return (
+					<RatingCellRenderer
+						value={parsedValue}
+						rowIndex={params.rowIndex}
+						params={params}
+						readOnly
+					/>
+				);
+			},
 		},
 		{
 			headerName: "Remove",
