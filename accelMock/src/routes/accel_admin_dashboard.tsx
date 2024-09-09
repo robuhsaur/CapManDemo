@@ -120,7 +120,6 @@ function ActionCellRenderer(params: any) {
 export default function AccelUserAdmin() {
 	let gridRef = useRef<AgGridReactType>(null); //
 	const data: any = useLoaderData();
-	console.log(data);
 	const [error, setError] = useState(false);
 
 	const defaultColDef = useMemo<ColDef>(() => {
@@ -145,7 +144,6 @@ export default function AccelUserAdmin() {
 			headerName: "First Name",
 			field: "first_name",
 			cellRenderer: (params: any) => {
-				console.log(params);
 				let data = params.data;
 				return (
 					<a href={`./accel_user/${data.id}`} target="_blank">
@@ -198,7 +196,6 @@ export default function AccelUserAdmin() {
 	const onSubmit: SubmitHandler<any> = async (formData) => {
 		let thisFormData = formData;
 		const trimEmail = formData.email.trim();
-		console.log("🚀 ~ constonSubmit:SubmitHandler<any>= ~ trimEmail:", trimEmail);
 		const idDuplicate = data.userData.some(
 			(row: any) => row.email === formData.email
 		);
@@ -225,7 +222,6 @@ export default function AccelUserAdmin() {
 
 	const handleCellUpdate = async (event: any) => {
 		const updatedData = event.data;
-		console.log("Updated data:", updatedData);
 		try {
 			const response = await fetch(
 				`http://localhost:8000/api/accel_user/${updatedData.id}/`,

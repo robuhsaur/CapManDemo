@@ -233,9 +233,9 @@ const MyCourses: React.FC = (params: any) => {
 				const response = await fetch("http://localhost:8000/api/accel_course/");
 				if (response.ok) {
 					const fetchedData = await response.json();
-					console.log("🚀 ~ fetchCourseData ~ fetchedData:", fetchedData);
+					//console.log("🚀 ~ fetchCourseData ~ fetchedData:", fetchedData);
 					setCourseData(fetchedData);
-					console.log("COURSE DATA:", courseData);
+					//console.log("COURSE DATA:", courseData);
 				} else {
 					console.error("Failed to fetch:", response.statusText);
 				}
@@ -268,10 +268,10 @@ const MyCourses: React.FC = (params: any) => {
 			const start = startDate ? new Date(startDate) : today;
 			const end = endDate ? new Date(endDate) : today;
 
-			console.log("🚀 ~ filteredData ~ start:", start);
-			console.log("🚀 ~ filteredData ~ approveDate:", approveDate);
-			console.log("🚀 ~ filteredData ~ completeDate:", completeDate);
-			console.log("🚀 ~ filteredData ~ end:", end);
+			// console.log("🚀 ~ filteredData ~ start:", start);
+			// console.log("🚀 ~ filteredData ~ approveDate:", approveDate);
+			// console.log("🚀 ~ filteredData ~ completeDate:", completeDate);
+			// console.log("🚀 ~ filteredData ~ end:", end);
 
 			return (
 				!start ||
@@ -280,7 +280,7 @@ const MyCourses: React.FC = (params: any) => {
 				(approveDate >= start && approveDate <= end)
 			);
 		});
-		console.log("That filtered data", filteredData);
+		//console.log("That filtered data", filteredData);
 		setUserProgress(filteredData || []);
 	};
 
@@ -324,7 +324,7 @@ const MyCourses: React.FC = (params: any) => {
 					const userRes = await fetchData.getData("api/accel_user/" + userID);
 					const data = await userRes.json();
 					setUserProgress(data.user_progress);
-					console.log("SUBMIT DATA:", data);
+					//console.log("SUBMIT DATA:", data);
 					reset();
 				} else {
 					// openAlert("Error Updating Record", "error")
@@ -411,8 +411,8 @@ const MyCourses: React.FC = (params: any) => {
 
 	const onCellValueChanged = (params: any) => {
 		const { data, rowIndex } = params;
-		console.log("🚀 ~ onCellValueChanged ~ params:", params.value);
-		console.log("🚀 ~ onCellValueChanged ~ rowIndex:", rowIndex);
+		// console.log("🚀 ~ onCellValueChanged ~ params:", params.value);
+		// console.log("🚀 ~ onCellValueChanged ~ rowIndex:", rowIndex);
 		//api.applyTransaction to the progress??
 
 		fetchData.putData("api/accel_user_progress", data).then(async (response) => {
@@ -426,7 +426,7 @@ const MyCourses: React.FC = (params: any) => {
 				//   autoClose: 4000,
 				// });
 				let rowNode = gridRef.current?.api.getRowNode(params);
-				console.log("🚀 ~ rowNode:", rowNode); // this is undefined
+				//console.log("🚀 ~ rowNode:", rowNode); // this is undefined
 				rowNode?.setDataValue(
 					"course_progress.progress_status",
 					obj.course_progress.progress_status

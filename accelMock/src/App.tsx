@@ -1,4 +1,9 @@
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
+import {
+	createBrowserRouter,
+	replace,
+	Router,
+	RouterProvider,
+} from "react-router-dom";
 import Root from "./routes/root";
 import * as React from "react";
 import MyCourses from "./routes/mycourses";
@@ -18,6 +23,7 @@ import AccelUserProfile, {
 } from "./routes/accel_user_admin_profile";
 import AccelUser, { loader as accelUserLoader } from "./routes/accel_user";
 import AccelLogin from "./accel_login";
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
 	{
