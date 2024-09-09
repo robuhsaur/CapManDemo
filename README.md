@@ -30,7 +30,7 @@ This project includes a React frontend and a Django backend, connected through D
 2. Set up virtual environment & install dependencies:
 
 
-  ```python3 -m venv env```
+  ```python3 -m venv .venv```
    
   ```source ./.venv/bin/activate  # macOS```
   
