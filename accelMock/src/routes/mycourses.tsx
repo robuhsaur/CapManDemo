@@ -24,7 +24,7 @@ import Button from "@mui/material/Button";
 import Select from "react-select";
 import FormControl from "@mui/material/FormControl";
 import CardContent from "@mui/material/CardContent";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import fetchData from "../api/fetch-data";
@@ -528,8 +528,7 @@ const MyCourses: React.FC = (params: any) => {
 										>
 											<Typography color="grey">Search by date:</Typography>
 											<Grid
-												item
-												xs={3}
+												size={3}
 												style={{
 													display: "flex",
 												}}
@@ -602,7 +601,6 @@ const MyCourses: React.FC = (params: any) => {
 											rowData={userProgress}
 											columnDefs={columnDefs}
 											defaultColDef={defaultColDef}
-											reactiveCustomComponents={true}
 											overlayLoadingTemplate={overlayLoadingTemplate}
 											overlayNoRowsTemplate={overlayNoRowsTemplate}
 											stopEditingWhenCellsLoseFocus={true}

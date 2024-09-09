@@ -363,6 +363,7 @@ export default function AccelUserAdmin() {
 														onCellValueChanged={handleCellUpdate}
 													/>
 												</div>
+												<p>Rows: {data.userData?.length ?? 0}</p>
 											</Box>
 										</Grid>
 									</Grid>

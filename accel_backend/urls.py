@@ -19,10 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from accel_api.accel_views import accel_views
+from django.conf import settings
+
+
 
 router = routers.DefaultRouter()
-
-
 router.register(
     r"accel_course_type", accel_views.AccelCourseTypeView, "accel_course_type"
 )
@@ -39,5 +40,14 @@ router.register(
     r"accel_user_progress", accel_views.AccelUserProgressView, "accel_user_progress"
 )
 
-
 urlpatterns = [path("admin/", admin.site.urls), path("api/", include(router.urls)), path("accel_login/", accel_views.ldap_login, name="ldap_login"), path("accel_logout/", accel_views.logout_view, name="ldap_logout")]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
+
+
+

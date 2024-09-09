@@ -25,16 +25,36 @@ SECRET_KEY = "django-insecure-vu$dyp(y3&xrs8$xb=08b)2_9vv2q)#p*q8(vqb07y_+66gi+d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+INTERNAL_IPS = ['127.0.0.1']
+
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "corsheaders",
     "accel_api",
+    "corsheaders",
+    "debug_toolbar",
     "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -46,6 +66,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     #"django.middleware.security.SecurityMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
@@ -56,6 +77,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "accel_backend.urls"
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    "http://localhost:5173",
+]
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.cache.CachePanel',
+]
 
 TEMPLATES = [
     {
