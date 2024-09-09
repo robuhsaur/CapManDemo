@@ -23,20 +23,20 @@ This project includes a React frontend and a Django backend, connected through D
 1. Clone the repository:
 
 
-  ```git clone https://github.com/robuhsaur/CapManDemo.git```
-  
-  ```cd CapManDemo```
+      ```git clone https://github.com/robuhsaur/CapManDemo.git```
+      
+      ```cd CapManDemo```
 
 2. Set up virtual environment & install dependencies:
 
 
-  ```python3 -m venv .venv```
-   
-  ```source ./.venv/bin/activate  # macOS```
-  
-  ```./.venv/Scripts/Activate.ps1 # Windows```
-  
-  ```pip install -r requirements.txt```
+      ```python3 -m venv .venv```
+       
+      ```source ./.venv/bin/activate  # macOS```
+      
+      ```./.venv/Scripts/Activate.ps1 # Windows```
+      
+      ```pip install -r requirements.txt```
 
 4. Apply Django migrations
 
